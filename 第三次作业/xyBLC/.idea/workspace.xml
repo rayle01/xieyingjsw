@@ -14,8 +14,11 @@
       <file leaf-file-name="BlockXY.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BLC/BlockXY.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+            <state relative-caret-position="361">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+              <folding>
+                <element signature="e#13#63#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -23,8 +26,44 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding>
+                <element signature="e#14#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockChainIteratorXY.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BLC/BlockChainIteratorXY.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+              <folding>
+                <element signature="e#13#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CLIXY.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BLC/CLIXY.go">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#13#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstantsXY.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BLC/ConstantsXY.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -32,7 +71,7 @@
       <file leaf-file-name="utilsXY.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BLC/utilsXY.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="342">
               <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
               <folding>
                 <element signature="e#13#58#0" expanded="true" />
@@ -44,16 +83,19 @@
       <file leaf-file-name="BlockChainXY.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BLC/BlockChainXY.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            <state relative-caret-position="95">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="46" />
+              <folding>
+                <element signature="e#13#63#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowXY.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PowXY.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BLC/PowXY.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
+            <state relative-caret-position="532">
               <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#13#68#0" expanded="true" />
@@ -71,18 +113,26 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>flagAddBlockData</find>
+    </findStrings>
+  </component>
   <component name="GOROOT" path="D:\Go" />
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/utilsXY.go" />
         <option value="$PROJECT_DIR$/BLC/utilsXY.go" />
-        <option value="$PROJECT_DIR$/BLC/BlockChainXY.go" />
         <option value="$PROJECT_DIR$/BLC/POW.go" />
         <option value="$PROJECT_DIR$/BLC/Pow.go" />
-        <option value="$PROJECT_DIR$/BLC/BlockXY.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/BLC/PowXY.go" />
+        <option value="$PROJECT_DIR$/BLC/ConstantsXY.go" />
+        <option value="$PROJECT_DIR$/BLC/BlockXY.go" />
+        <option value="$PROJECT_DIR$/BLC/BlockChainXY.go" />
+        <option value="$PROJECT_DIR$/BLC/BlockChainIteratorXY.go" />
+        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/BLC/CLIXY.go" />
       </list>
     </option>
   </component>
@@ -95,7 +145,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="3026" />
@@ -112,6 +162,11 @@
             <path>
               <item name="xyBLC" type="b2602c69:ProjectViewProjectNode" />
               <item name="xyBLC" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xyBLC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xyBLC" type="462c0819:PsiDirectoryNode" />
+              <item name="BLC" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xyBLC" type="b2602c69:ProjectViewProjectNode" />
@@ -148,7 +203,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build main.go">
+    <configuration name="go build BLC/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="xyBLC" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
+      <filePath value="$PROJECT_DIR$/" />
+      <directory value="$PROJECT_DIR$/BLC" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="xyBLC" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -157,26 +220,32 @@
       <filePath value="$PROJECT_DIR$/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build BLC/" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build BLC/" />
       </list>
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2563574" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25979382" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32938388" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23933649" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -198,6 +267,56 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/BLC/BlockXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <folding>
+            <element signature="e#13#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/utilsXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#13#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/BlockChainXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding>
+            <element signature="e#13#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/PowXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#13#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BLC/BlockXY.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -282,7 +401,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BLC/utilsXY.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="342">
           <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
           <folding>
             <element signature="e#13#58#0" expanded="true" />
@@ -290,33 +409,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BLC/BlockChainXY.go">
+    <entry file="file://$PROJECT_DIR$/BLC/PowXY.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="532">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#13#68#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BLC/BlockXY.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+        <state relative-caret-position="361">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding>
+            <element signature="e#13#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BLC/PowXY.go">
+    <entry file="file://$PROJECT_DIR$/BLC/BlockChainIteratorXY.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="171">
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
           <folding>
-            <element signature="e#13#68#0" expanded="true" />
+            <element signature="e#13#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/ConstantsXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/BlockChainXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="46" />
+          <folding>
+            <element signature="e#13#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLC/CLIXY.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#13#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
