@@ -95,7 +95,7 @@ func NewMerkleTreeXY(txHashData [][]byte) *MerkleTreeXY{
 		nodes = append(nodes,node)
 	}
 	rootnode = nodes[0]
-	for i:=0;i<len(txHashData);i++{
+	for i:=0;i<len(txHashData)-1;i++{
 		node:=NewMerkleNodeXY(rootnode,nodes[i+1],nil)
 		rootnode =node
 
