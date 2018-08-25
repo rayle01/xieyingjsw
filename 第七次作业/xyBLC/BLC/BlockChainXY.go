@@ -25,13 +25,18 @@ type BlockChainXY struct {
 1.数据库存储，创世区块已经存在，直接返回
 2.数据库不存在，创建创世区块，存入到数据库中
  */
-func CreateBlockChainWithGenesisBlockXY(address string) {
+func CreateBlockChainWithGenesisBlockXY(address string,nodeID string) {
 
 	/*
 	1.判断数据库如果存在，直接结束方法
 	2.数据库不存在，创建创世区块，并存入到数据库中
 	 */
-	if dbExistsXY() {
+
+	//设置dbname
+	DBNameXY := fmt.Sprintf(DBNameXY, nodeID) //  "blockchain_3000.db"
+
+
+	if dbExistsXY(DBNameXY) {
 		fmt.Println("数据库已经存在，无法创建创世区块。。")
 		return
 	}
@@ -70,7 +75,8 @@ func CreateBlockChainWithGenesisBlockXY(address string) {
 	if err != nil {
 		log.Panic(err)
 	}
-	//return &BlockChain{db, genesisBlock.Hash}
+	defer db.Close()
+
 }
 //添加区块到区块链中
 func (bc *BlockChainXY) AddBlockToBlockChainXY(txs []*TransactionXY) {
@@ -113,8 +119,8 @@ func (bc *BlockChainXY) AddBlockToBlockChainXY(txs []*TransactionXY) {
 
 
 //提供一个方法，用于判断数据库是否存在
-func dbExistsXY() bool {
-	if _, err := os.Stat(DBNameXY); os.IsNotExist(err) {
+func dbExistsXY(DBName string) bool {
+	if _, err := os.Stat(DBName); os.IsNotExist(err) {
 		return false
 	}
 	return true
@@ -147,14 +153,19 @@ func (bc *BlockChainXY) PrintChainsXY() {
 				fmt.Printf("\t\t\tTxID:%x\n", in.TxID)
 				fmt.Printf("\t\t\tVout:%d\n", in.Vout)
 				//fmt.Printf("\t\t\tScriptSiq:%s\n", in.ScriptSiq)
-				fmt.Printf("\t\t\tsign:%v\n",in.Signature)
-				fmt.Printf("\t\t\tPublicKey:%v\n",in.PublicKey)
+				fmt.Printf("\t\t\tsign:%v\n", in.Signature)
+				fmt.Printf("\t\t\tPublicKey:%v\n", in.PublicKey)
+				if in.PublicKey != nil {
+					fmt.Printf("\t\t\taddress:%s\n", GetAddressByPublicKeyXY(in.PublicKey))
+
+				}
 			}
 			fmt.Println("\t\tVouts:")
 			for _, out := range tx.Vouts { //每个以txOutput:value,锁定脚本
 				fmt.Printf("\t\t\tValue:%d\n", out.Value)
 				//fmt.Printf("\t\t\tScriptPubKey:%s\n", out.ScriptPubKey)
-				fmt.Printf("\t\t\tPubKeyHash:%v\n",out.PubKeyHash)
+				fmt.Printf("\t\t\tPubKeyHash:%v\n", out.PubKeyHash)
+				fmt.Printf("\t\t\taddress:%s\n", GetAddressByPubKeyHashXY(out.PubKeyHash))
 			}
 		}
 
@@ -346,7 +357,7 @@ func (bc *BlockChainXY) GetBalanceXY(address string,txs[] *TransactionXY) int64 
 }
 
 //新增功能：通过转账，创建区块
-func (bc *BlockChainXY) MineNewBlockXY(from, to, amount []string) {
+func (bc *BlockChainXY) MineNewBlockXY(from, to, amount []string,nodeID string) {
 	/*
 	1.新建交易
 	2.新建区块：
@@ -359,16 +370,16 @@ func (bc *BlockChainXY) MineNewBlockXY(from, to, amount []string) {
 	//fmt.Println(amount)
 	//1.新建交易
 	var txs [] *TransactionXY
+	utxoSet :=&UTXOSetXY{bc}
 
 	for i := 0; i < len(from); i++ {
 		//amount[0]-->int
 		amountInt, _ := strconv.ParseInt(amount[i], 10, 64)
-		tx := NewSimpleTransactionXY(from[i], to[i], amountInt, bc,txs)
+		tx := NewSimpleTransactionXY(from[i], to[i], amountInt, utxoSet,txs,nodeID)
 		txs = append(txs, tx)
 
 	}
 	/*
-
 	分析：循环第一次：i=0
 		txs[transaction1, ]
 		循环第二次：i=1
@@ -378,12 +389,16 @@ func (bc *BlockChainXY) MineNewBlockXY(from, to, amount []string) {
 
 	//交易的验证：
 	for _,tx:=range txs{
-		if bc.VerifityTransactionXY(tx) == false{
+		if bc.VerifityTransactionXY(tx,txs) == false{
 			log.Panic("数字签名验证失败。。。")
 		}
 
 	}
 
+//	创建一个CoinBase交易--->Tx
+
+	coinBaseTransaction := NewCoinBaseTransaction(from[0])
+	txs = append(txs, coinBaseTransaction)
 
 
 
@@ -425,13 +440,13 @@ func (bc *BlockChainXY) MineNewBlockXY(from, to, amount []string) {
 }
 
 //提供一个函数，专门用于获取BlockChain对象
-func GetBlockChainObject() *BlockChainXY {
+func GetBlockChainObject(nodeID string) *BlockChainXY {
 	/*
 		1.数据库存在，读取数据库，返回blockchain即可
 		2.数据库 不存储，返回nil
 	 */
-
-	if dbExistsXY() {
+	DBNameXY := fmt.Sprintf(DBNameXY, nodeID)
+	if dbExistsXY(DBNameXY) {
 		//fmt.Println("数据库已经存在。。。")
 		//打开数据库
 		db, err := bolt.Open(DBNameXY, 0600, nil)
@@ -463,7 +478,7 @@ func GetBlockChainObject() *BlockChainXY {
 
 
 //签名：
-func (bc *BlockChainXY) SignTrasanctionXY(tx *TransactionXY,privateKey ecdsa.PrivateKey){
+func (bc *BlockChainXY) SignTrasanctionXY(tx *TransactionXY,privateKey ecdsa.PrivateKey,txs []*TransactionXY){
 	//1.判断要签名的tx，如果时coninbase交易直接返回
 	if tx.IsCoinBaseTransactionXY(){
 		return
@@ -473,7 +488,7 @@ func (bc *BlockChainXY) SignTrasanctionXY(tx *TransactionXY,privateKey ecdsa.Pri
 	prevTxs:=make(map[string]*TransactionXY)
 	for _,input:=range tx.Vins{
 		txIDStr:=hex.EncodeToString(input.TxID)
-		prevTxs[txIDStr] = bc.FindTransactionByTxIDXY(input.TxID)
+		prevTxs[txIDStr] = bc.FindTransactionByTxIDXY(input.TxID,txs)
 	}
 
 	//3.签名
@@ -483,7 +498,14 @@ func (bc *BlockChainXY) SignTrasanctionXY(tx *TransactionXY,privateKey ecdsa.Pri
 
 
 //根据交易ID，获取对应的交易对象
-func (bc *BlockChainXY) FindTransactionByTxIDXY(txID []byte) *TransactionXY{
+func (bc *BlockChainXY) FindTransactionByTxIDXY(txID []byte,txs []*TransactionXY) *TransactionXY{
+
+	//1.先查找未打包的txs
+	for _, tx := range txs {
+		if bytes.Compare(tx.TxID, txID) == 0 {
+			return tx
+		}
+	}
 	//遍历数据库，获取blcok--->transaction
 	iterator:=bc.IteratorXY()
 	for{
@@ -508,14 +530,186 @@ func (bc *BlockChainXY) FindTransactionByTxIDXY(txID []byte) *TransactionXY{
 
 
 //验证交易的数字签名
-func (bc *BlockChainXY) VerifityTransactionXY(tx *TransactionXY) bool{
+func (bc *BlockChainXY) VerifityTransactionXY(tx *TransactionXY,txs []*TransactionXY) bool{
 	//要想验证数字签名：私钥+数据 (tx的副本+之前的交易)
 	prevTxs:=make(map[string]*TransactionXY)
 	for _,input:=range tx.Vins{
-		prevTx:=bc.FindTransactionByTxIDXY(input.TxID)
+		prevTx:=bc.FindTransactionByTxIDXY(input.TxID,txs)
 		prevTxs[hex.EncodeToString(input.TxID)] = prevTx
 	}
 
 	//验证
 	return  tx.VerifityXY(prevTxs)
+}
+
+/*
+增加一个函数：
+查询所有的未花费utxo
+ */
+func (bc *BlockChainXY) FindUnspentUTXOMapXY() map[string]*TxOutputsXY {
+	//遍历迭代每个block，txs里的未花费的output
+	iterator := bc.IteratorXY()
+	//创建一个map，用于存储已经花费的input--->output
+	spentedMap := make(map[string][]*TxInputXY)
+
+	//创建一个map，存储未花费的utxo
+	unspentUTXOsMap := make(map[string]*TxOutputsXY)
+
+	for {
+		block := iterator.Next()
+
+		for i := len(block.Txs) - 1; i >= 0; i-- {
+			tx := block.Txs[i]
+			txOutputs := &TxOutputsXY{[]*UTXOXY{}}
+
+			//step1：遍历tx的Inputs，存入到spentedMap
+			if !tx.IsCoinBaseTransactionXY() {
+				//获取每个input，存入spentedmap
+				for _, input := range tx.Vins {
+					key := hex.EncodeToString(input.TxID)
+					spentedMap[key] = append(spentedMap[key], input)
+				}
+			}
+
+			txIDstr := hex.EncodeToString(tx.TxID)
+			//step2遍历该tx的output
+		outputLoop:
+			for index, output := range tx.Vouts {
+				inputs := spentedMap[txIDstr] //已经花费的input
+
+				if len(spentedMap) > 0 {
+					isSpent := false
+					for _, input := range inputs {
+						inputPubKeyHash := PubKeyHashXY(input.PublicKey)
+						if bytes.Compare(inputPubKeyHash, output.PubKeyHash) == 0 && index == input.Vout {
+							isSpent = true
+							continue outputLoop
+						}
+					}
+					if isSpent == false {
+						utxo := &UTXOXY{tx.TxID, index, output}
+						txOutputs.UTXOs = append(txOutputs.UTXOs, utxo)
+					}
+
+				} else {
+					//获取output-->utxo-->存入到txoutputs
+					utxo := &UTXOXY{tx.TxID, index, output}
+					txOutputs.UTXOs = append(txOutputs.UTXOs, utxo)
+				}
+			}
+
+			//将当前的这个tx中，未花费txOutputs，存入到未花费map中
+			if len(txOutputs.UTXOs) > 0 {
+				unspentUTXOsMap[txIDstr] = txOutputs
+			}
+
+		}
+
+		//结束for循环
+		bigInt := new(big.Int)
+		bigInt.SetBytes(block.PrevBlockHash)
+
+		if big.NewInt(0).Cmp(bigInt) == 0 {
+			break
+		}
+	}
+	return unspentUTXOsMap
+}
+
+//用于查询最后一个块的高度
+func (bc *BlockChainXY) GetBestHeight() int64 {
+	block := bc.IteratorXY().Next()
+	return block.Height
+
+}
+
+/*
+查询该区块链中的区块的hash
+ */
+
+func (bc *BlockChainXY) getBlocksHashes() [][]byte {
+	iterator := bc.IteratorXY()
+
+	var hashes [][]byte
+
+	for {
+		block := iterator.Next()
+		hashes = append(hashes, block.Hash)
+
+		//循环结束
+		bigInt := new(big.Int)
+		bigInt.SetBytes(block.PrevBlockHash)
+		if big.NewInt(0).Cmp(bigInt) == 0 {
+			break
+		}
+	}
+	return hashes
+}
+
+/*
+添加一个方法，根据hash，获取对应的区块
+ */
+
+func (bc *BlockChainXY) GetBlockByHash(hash []byte) *BlockXY {
+
+	var block *BlockXY
+
+	err := bc.DB.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(BlockBucketName))
+		if b != nil {
+			blockBytes := b.Get(hash)
+			block = DeserializeBlockXY(blockBytes)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		log.Panic(err)
+	}
+
+	return block
+
+}
+
+/*
+将block对象，存入到数据库中
+ */
+
+func (bc *BlockChainXY) AddBlockXY(block *BlockXY) {
+
+
+	err := bc.DB.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(BlockBucketName))
+		if b != nil {
+
+			//判断区块是否存在
+			blockBytes := b.Get(block.Hash)
+			if blockBytes != nil {
+				return nil
+			}
+
+			//区块不存在
+			err := b.Put(block.Hash, block.SerializeXY())
+			if err != nil {
+				log.Panic(err)
+			}
+			// 更新最新的hashXY
+
+			lastBlockHash := b.Get([]byte("l"))
+			lastBlockBytes := b.Get(lastBlockHash)
+
+			lastBlock := DeserializeBlockXY(lastBlockBytes)
+			if lastBlock.Height < block.Height {
+				b.Put([]byte("l"), block.Hash)
+				bc.Tip = block.Hash
+			}
+		}
+
+		return nil
+
+	})
+	if err != nil {
+		log.Panic(err)
+	}
 }
