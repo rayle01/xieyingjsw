@@ -1,0 +1,4 @@
+XYCoin 合约地址：0x0dd173957ae7c669804caf41fa1d450f03c2d9bd
+
+账户1：0x7149d280aa37403ee1cab6a70b7431700ce18afa    转账 ： 100个XYCoin
+
